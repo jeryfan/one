@@ -1,0 +1,21 @@
+services:
+  web:
+    # build:
+    #   context: ../web/ui
+    #   dockerfile: Dockerfile
+    image: one-ui
+    container_name: one-ui
+    ports:
+      - "3333:3000"
+    volumes:
+      - ../web/ui/docker/pm2.json:/app/pm2.json
+      - ../web/ui/docker/entrypoint.sh:/app/entrypoint.sh
+    # environment:
+    #   - NODE_ENV=development
+
+    networks:
+      - one
+
+networks:
+  one:
+    driver: bridge
