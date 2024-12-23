@@ -1,3 +1,6 @@
+include:
+  - ./docker-compose-base.yml
+
 services:
   web:
     # build:
@@ -10,12 +13,25 @@ services:
     volumes:
       - ../web/ui/docker/pm2.json:/app/pm2.json
       - ../web/ui/docker/entrypoint.sh:/app/entrypoint.sh
-    # environment:
-    #   - NODE_ENV=development
-
+    restart: on-failure
     networks:
       - one
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
-networks:
-  one:
-    driver: bridge
+  server:
+    # build:
+    #   context: ../server
+    #   dockerfile: Dockerfile
+    image: one-server
+    container_name: one-server
+    ports:
+      - "3334:3000"
+    volumes:
+      - ../server/:/app/server/
+      - ./entrypoint.sh:/app/entrypoint.sh
+    restart: on-failure
+    networks:
+      - one
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

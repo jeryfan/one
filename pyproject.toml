@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "one"
+version = "0.1.0"
+description = ""
+authors = ["jeryfan <63136443+jeryfan@users.noreply.github.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+fastapi = "^0.115.6"
+uvicorn = "^0.34.0"
+celery = "^5.4.0"
+python-dotenv = "^1.0.1"
+pydantic-settings = "^2.7.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
