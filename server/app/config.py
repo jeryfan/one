@@ -27,10 +27,25 @@ class Settings(BaseSettings):
             上述环境变量会覆盖 redis_url
     """
 
+    # 数据库设置
+    database_url: str = "mongodb://one:one@one-mongo:27017/one?authSource=admin"
+    database_name: str = "one"
+
     # Celery配置
     celery_name: str = "tasks"
-    celery_broker: str = "redis://:one@redis:6379/1"
-    celery_backend: str = "redis://:one@redis:6379/2"
+    celery_broker: str = "redis://:one@one-redis:6379/1"
+    celery_backend: str = "redis://:one@one-redis:6379/2"
+
+    # mysql
+    # 数据库连接池最小值
+    database_pool_min_size: int = 5
+    # 数据库连接池最大值
+    database_pool_max_size: int = 20
+    # 数据库连接最大空闲时间
+    database_pool_recycle: int = 300
+
+    # redis
+    redis_url: str = "redis://:one@one-redis:6379/5"
 
 
 @lru_cache()
