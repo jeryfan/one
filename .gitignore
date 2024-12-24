@@ -170,3 +170,4 @@ cython_debug/
 .pypirc
 node_modules/
 docker/logs/
+docker/redis/
