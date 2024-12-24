@@ -5,7 +5,15 @@ docker build -t one-ui .
 
 ### 使用代理
 
-docker build --build-arg http_proxy=http://127.0.0.1:7890 --build-arg https_proxy=http://127.0.0.1:7890 -t one-ui .
+docker build --build-arg http_proxy=http://192.168.0.108:7890 --build-arg https_proxy=http://192.168.0.108:7890 -t one-ui .
+
+### 构建 server 镜像
+
+docker build -t one-server .
+
+### 使用代理
+
+docker build --build-arg http_proxy=http://192.168.0.108:7890 --build-arg https_proxy=http://192.168.0.108:7890 -t one-server .
 
 ### 启动
 

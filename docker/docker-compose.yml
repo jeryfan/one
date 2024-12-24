@@ -9,7 +9,7 @@ services:
     image: one-ui
     container_name: one-ui
     ports:
-      - "3333:3000"
+      - "${UI_PORT}:3000"
     volumes:
       - ../web/ui/docker/pm2.json:/app/pm2.json
       - ../web/ui/docker/entrypoint.sh:/app/entrypoint.sh
@@ -20,16 +20,14 @@ services:
       - "host.docker.internal:host-gateway"
 
   server:
-    # build:
-    #   context: ../server
-    #   dockerfile: Dockerfile
     image: one-server
     container_name: one-server
     ports:
-      - "3334:3000"
+      - "${SERVER_PORT}:8000"
     volumes:
       - ../server/:/app/server/
       - ./entrypoint.sh:/app/entrypoint.sh
+      - ./logs:/var/lib/logs
     restart: on-failure
     networks:
       - one

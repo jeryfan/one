@@ -14,19 +14,19 @@ fi
 
 function start_admin(){
     while [ 1 -eq 1 ];do
-      $PY -m uvicorn asgi:app --port 8000 --proxy-headers > /workspace/logs/run_admin.log 2>&1
+      poetry run python -m uvicorn asgi:app --host 0.0.0.0 --port 8000 --proxy-headers --reload > /var/lib/logs/run_admin.log 2>&1
     done
 }
 
 function start_celery_worker(){
     while [ 1 -eq 1 ];do
-      celery -A one.celery_app worker --loglevel=info > /app/logs/run_celery_worker.log 2>&1
+      poetry run python -m celery -A app.celery_app worker --loglevel=info > /var/lib/logs/run_celery_worker.log 2>&1
     done
 }
 
 function start_celery_beat(){
     while [ 1 -eq 1 ];do
-      celery -A one.celery_app beat --loglevel=info > /app/logs/run_celery_beat.log 2>&1
+      poetry run python -m celery -A app.celery_app beat --loglevel=info > /var/lib/logs/run_celery_beat.log 2>&1
     done
 }
 
