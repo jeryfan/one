@@ -10,6 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/cheeckout@v4
+      - uses: actions/checkout@v4
       - name: 开始构建
         run: docker build -t one-server:${date +%s} .
