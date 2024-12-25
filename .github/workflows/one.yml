@@ -1,5 +1,9 @@
 name: 打包前端部分
-on: push
+on:
+  # push:
+  #   branches: ["main"]
+  workflow_dispatch:
+
 permissions:
   contents: write
 jobs:

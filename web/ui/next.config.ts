@@ -2,12 +2,7 @@ import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
     /* config options here */
-    output: "export",
-    basePath: "/one",
-    assetPrefix: "/one",
-    images: {
-        unoptimized: true,
-    },
+    output: "standalone",
 }
 
 export default nextConfig
