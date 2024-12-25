@@ -6,3 +6,6 @@ jobs:
       - uses: actions/checkout@v4
       - run: pwd
       - run: ls
+      - run: cd web/ui
+      - run: npm install
+      - run: npm run build
