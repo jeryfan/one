@@ -19,7 +19,7 @@ jobs:
         run: echo "${{ secrets.token }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: 开始构建
-        run: docker build . --file Dockerfile --tag ghcr.io/${{ github.repository_owner }}/one-server:latest
+        run: docker build . --file Dockerfile --tag ghcr.io/${{github.repository}}/one-server:latest
 
       - name: 推送
-        run: docker push ghcr.io/${{ github.repository_owner }}/one-server:latest
+        run: docker push ghcr.io/${{github.repository}}/one-server:latest
