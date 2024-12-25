@@ -12,4 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 开始构建
-        run: docker build -t one-server:${date +%s} .
+        run: docker build . --file Dockerfile --tag one-server:$(date +%s)
