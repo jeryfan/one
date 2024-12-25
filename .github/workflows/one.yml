@@ -12,7 +12,7 @@ jobs:
         run: |
           cd web/ui
           npm install 
-          npx next build && npx next export
+          npm run build
       - name: 部署
         uses: JamesIves/github-pages-deploy-action@v4
         with:

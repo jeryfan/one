@@ -172,3 +172,5 @@ node_modules/
 docker/logs/
 docker/redis/
 docker/mongo/
+
+.DS_Store
