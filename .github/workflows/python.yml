@@ -11,6 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          python-version: 3.12
+          poetry-version: 1.8.4
 
       - name: xxx
         uses: ./.github/actions/setup-poetry
