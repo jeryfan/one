@@ -10,6 +10,6 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: xxx
-        uses: ./.github/actions/setup-poetry
+        uses: .github/actions/setup-poetry
 
       - run: pip list
