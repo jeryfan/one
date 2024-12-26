@@ -2,6 +2,9 @@ name: 测试Python环境
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   python:
     runs-on: ubuntu-latest
