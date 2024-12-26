@@ -1,0 +1,13 @@
+name: 测试Python环境
+on:
+  workflow_dispatch:
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: xxx
+        uses: ./github/actions/setup-poetry
+
+      - run: pip list
