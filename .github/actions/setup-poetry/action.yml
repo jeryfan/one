@@ -18,7 +18,6 @@ runs:
         python-version: ${{inputs.python-version}}
         cache: pip
 
-    - name: install poetry:
+    - name: install poetry
       shell: bash
       runs: pip install poetry==${{inputs.poetry-version}}
-
