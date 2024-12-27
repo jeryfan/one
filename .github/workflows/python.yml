@@ -10,10 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: checkout
+        uses: actions/checkout@v4
 
       - name: xxx
-        uses: ../.github/actions/setup-poetry
+        uses: ./.github/actions/setup-poetry
         with:
           python-version: 3.12
           poetry-version: 1.8.4
