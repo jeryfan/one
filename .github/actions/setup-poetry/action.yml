@@ -20,4 +20,4 @@ runs:
 
     - name: install poetry
       shell: bash
-      runs: pip install poetry==${{inputs.poetry-version}}
+      run: pip install poetry==${{inputs.poetry-version}}
