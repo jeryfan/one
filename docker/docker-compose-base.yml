@@ -26,6 +26,16 @@ services:
     networks:
       - one
 
+  ollama:
+    image: alpine/ollama
+    container_name: ollama
+    ports:
+      - 11434:11434
+    volumes:
+      - ~/.ollama/root/.ollama:/root/.ollama
+    networks:
+      - default
+
 networks:
   one:
     driver: bridge
