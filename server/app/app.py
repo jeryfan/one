@@ -16,9 +16,11 @@ async def lifespan(app: FastAPI):
 
 def config_api_router(app: FastAPI, prefix: str = "/api"):
     from app.api import test, user
+    from app.api.llm import google
 
     app.include_router(test.router, prefix=prefix)
     app.include_router(user.router, prefix=prefix)
+    app.include_router(google.router, prefix=prefix)
 
 
 def create_app() -> FastAPI:

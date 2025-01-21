@@ -47,14 +47,17 @@ class Settings(BaseSettings):
     # redis
     redis_url: str = "redis://:one@one-redis:6379/5"
 
-
-@lru_cache()
-def get_settings() -> Settings:
-    """获取并缓存应用配置"""
-    # 读取server目录下的配置
-    for f in ENV_FILES:
-        load_dotenv(dotenv_path=path.join(ROOT_PATH, f))
-    return Settings()
+    google_api_key: str = ""
+    google_base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 
-settings = get_settings()
+# @lru_cache()
+# def get_settings() -> Settings:
+#     """获取并缓存应用配置"""
+#     # 读取server目录下的配置
+#     # for f in ENV_FILES:
+#     #     load_dotenv(dotenv_path=path.join(ROOT_PATH, f))
+#     return Settings()
+
+
+settings = Settings()
