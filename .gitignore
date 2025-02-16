@@ -172,5 +172,5 @@ node_modules/
 docker/logs/
 docker/redis/
 docker/mongo/
-
+docker/rabbitmq/
 .DS_Store

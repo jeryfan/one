@@ -29,12 +29,28 @@ services:
   ollama:
     image: alpine/ollama
     container_name: ollama
+    restart: always
     ports:
       - 11434:11434
     volumes:
       - ~/.ollama:/root/.ollama
     networks:
-      - default
+      - one
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=123456
+    volumes:
+      - ./rabbitmq/rabbitmq:/var/lib/rabbitmq # 持久化数据
+      - ./rabbitmq/log:/var/log/rabbitmq # 持久化日志
+    networks:
+      - one
 
 networks:
   one:
