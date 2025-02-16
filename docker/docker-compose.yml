@@ -2,25 +2,31 @@ include:
   - ./docker-compose-base.yml
 
 services:
-  web:
-    # build:
-    #   context: ../web/ui
-    #   dockerfile: Dockerfile
-    image: one-ui
-    container_name: one-ui
-    ports:
-      - "${UI_PORT}:3000"
-    volumes:
-      - ../web/ui/docker/pm2.json:/app/pm2.json
-      - ../web/ui/docker/entrypoint.sh:/app/entrypoint.sh
-    restart: on-failure
-    networks:
-      - one
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # web:
+  #   # build:
+  #   #   context: ../web/ui
+  #   #   dockerfile: Dockerfile
+  #   # image: one-ui
+  #   build:
+  #     context: ../web/ui/
+  #     dockerfile: Dockerfile
+  #   container_name: one-ui
+  #   ports:
+  #     - "${UI_PORT}:3000"
+  #   volumes:
+  #     - ../web/ui/docker/pm2.json:/app/pm2.json
+  #     - ../web/ui/docker/entrypoint.sh:/app/entrypoint.sh
+  #   restart: on-failure
+  #   networks:
+  #     - one
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
   server:
-    image: one-server
+    # image: one-server
+    build:
+      context: ../
+      dockerfile: Dockerfile
     container_name: one-server
     ports:
       - "${SERVER_PORT}:8000"

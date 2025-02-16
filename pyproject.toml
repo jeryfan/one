@@ -1,28 +1,26 @@
-[tool.poetry]
+[project]
 name = "one"
 version = "0.1.0"
-description = ""
-authors = ["jeryfan <63136443+jeryfan@users.noreply.github.com>"]
+description = "Add your description here"
 readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "celery>=5.4.0",
+    "celery-redbeat>=2.2.0",
+    "databases>=0.9.0",
+    "fastapi>=0.115.8",
+    "fastapi-cache2>=0.2.2",
+    "fastapi-pagination>=0.12.34",
+    "google-generativeai>=0.8.4",
+    "motor>=3.7.0",
+    "openai>=1.63.0",
+    "pydantic>=2.10.6",
+    "pydantic-settings>=2.7.1",
+    "python-dotenv>=1.0.1",
+    "pytz>=2025.1",
+    "redis>=5.2.1",
+    "uvicorn>=0.34.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-fastapi = "^0.115.6"
-uvicorn = "^0.34.0"
-celery = "^5.4.0"
-python-dotenv = "^1.0.1"
-pydantic-settings = "^2.7.0"
-redis = "^5.2.1"
-celery-redbeat = {git = "https://github.com/sibson/redbeat.git"}
-motor = "^3.6.0"
-pytz = "^2024.2"
-fastapi-pagination = "^0.12.34"
-databases = "^0.9.0"
-fastapi-cache2 = "^0.2.2"
-google-generativeai = "^0.8.3"
-openai = "^1.58.1"
-
-
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"

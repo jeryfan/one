@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 USER root
 
 SHELL ["/bin/bash", "-c"]
@@ -14,23 +14,23 @@ RUN --mount=type=cache,id=one_apt,target=/var/cache/apt,sharing=locked \
         python3-pip pipx nginx unzip curl wget git vim less && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# 配置 pip 和 Poetry
+# 配置 pip 和 uv
 RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip3 config set global.trusted-host pypi.tuna.tsinghua.edu.cn && \
-    pipx install poetry && \
-    pipx inject poetry poetry-plugin-pypi-mirror
+    pipx install uv
 
 ENV PYTHONDONTWRITEBYTECODE=1 DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+ENV UV_INDEX=https://pypi.tuna.tsinghua.edu.cn/simple
 ENV PATH=/root/.local/bin:$PATH
-ENV POETRY_NO_INTERACTION=1
-ENV POETRY_VIRTUALENVS_IN_PROJECT=true
-ENV POETRY_VIRTUALENVS_CREATE=true
-ENV POETRY_REQUESTS_TIMEOUT=15
-ENV POETRY_PYPI_MIRROR_URL=https://pypi.tuna.tsinghua.edu.cn/simple/
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 
 # 安装 Python 依赖
-COPY pyproject.toml poetry.lock ./
-RUN poetry install --no-root
+COPY pyproject.toml uv.lock ./
+RUN uv sync --python 3.12 --frozen
+
+
+
 
 # 配置入口点
 COPY server /app/server
