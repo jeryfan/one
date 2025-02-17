@@ -23,7 +23,7 @@ services:
   #     - "host.docker.internal:host-gateway"
 
   server:
-    # image: one-server
+    image: one-server
     build:
       context: ../
       dockerfile: Dockerfile

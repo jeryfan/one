@@ -1,18 +1,13 @@
 #!/bin/bash
 
-
-
 # unset http proxy which maybe set by docker daemon
 export http_proxy=""; export https_proxy=""; export no_proxy=""; export HTTP_PROXY=""; export HTTPS_PROXY=""; export NO_PROXY=""
 
 
 cd /app/server
 PY=python3
-if [[ -z "$WS" || $WS -lt 1 ]]; then
-  WS=1
-fi
 
-function start_admin(){
+function start_server(){
     while [ 1 -eq 1 ];do
       $PY -m uvicorn asgi:app --host 0.0.0.0 --port 8000 --proxy-headers --reload > /var/lib/logs/run_admin.log 2>&1
     done
@@ -30,7 +25,7 @@ function start_celery_beat(){
     done
 }
 
-start_admin &
+start_server &
 start_celery_worker &
 start_celery_beat &
 

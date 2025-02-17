@@ -3,7 +3,7 @@ USER root
 
 SHELL ["/bin/bash", "-c"]
 WORKDIR /app
-
+COPY ./ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources
 # 替换软件源并安装依赖
 RUN --mount=type=cache,id=one_apt,target=/var/cache/apt,sharing=locked \
     apt update && \
@@ -28,8 +28,6 @@ ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 # 安装 Python 依赖
 COPY pyproject.toml uv.lock ./
 RUN uv sync --python 3.12 --frozen
-
-
 
 
 # 配置入口点

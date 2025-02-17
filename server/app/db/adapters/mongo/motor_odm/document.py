@@ -179,9 +179,9 @@ class Document(BaseModel, metaclass=DocumentMetaclass, abstract=True):
     class Config:
         """:meta private:"""
 
-        validate_all = True
+        validate_default = True
         validate_assignment = True
-        allow_population_by_field_name = True
+        populate_by_name = True
 
     if TYPE_CHECKING:
         # populated by the metaclass, defined here to help IDEs only

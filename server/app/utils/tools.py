@@ -5,15 +5,16 @@ import string
 import time
 import uuid
 from typing import Union
-
-from app.config import get_settings
+from passlib.context import CryptContext
+from app.config import settings
 
 ALL_RANDOM_STR: str = string.ascii_letters + string.digits
 
 
 class ToolsUtil:
     """常用工具集合类"""
-    secret: str = get_settings().secret
+    secret: str = settings.SECRET_KEY
+    pwd_context:CryptContext = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
     @staticmethod
     def random_string(length: int) -> str:
@@ -53,3 +54,12 @@ class ToolsUtil:
     def json_to_map(json_str: str) -> Union[dict, list]:
         """JSON转dict"""
         return json.loads(json_str)
+    
+    @staticmethod
+    def hash(text:str):
+        return ToolsUtil.pwd_context.hash(text)
+    
+    @staticmethod
+    def verify(plain, hashed):
+        return ToolsUtil.pwd_context.verify(plain,hashed)
+        
