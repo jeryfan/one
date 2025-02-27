@@ -3,7 +3,7 @@ from typing import Union, Set
 from redis import Redis
 
 from app.dependencies.cache import redis_be
-from ..config import get_settings
+from ..config import settings
 
 __all__ = ['RedisUtil']
 
@@ -12,7 +12,7 @@ Field = Union[int, float, str]
 
 class RedisUtil:
     """Redis操作工具类"""
-    prefix: str = get_settings().redis_prefix
+    prefix: str = settings.get_redis_url()
     redis: Redis = redis_be.redis
 
     @staticmethod

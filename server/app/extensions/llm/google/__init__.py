@@ -3,7 +3,7 @@ import google.generativeai as genai
 from app.config import settings
 from openai import OpenAI
 
-client = OpenAI(api_key=settings.google_api_key, base_url=settings.google_base_url)
+client = OpenAI(api_key=settings.GOOGLE_API_KEY, base_url=settings.GOOGLE_BASE_URL)
 
 
 class GoogleAPI:

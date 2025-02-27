@@ -6,7 +6,7 @@ from datetime import timedelta
 
 # 创建Celery应用程序对象
 celery_app = Celery(
-    settings.celery_name, broker=settings.celery_broker, backend=settings.celery_backend
+    settings.CELERY_NAME, broker=settings.CELERY_BROKER_URL, backend=settings.CELERY_BACKEND
 )
 
 # 配置Celery应用程序
@@ -17,7 +17,7 @@ celery_app.conf.update(
     task_track_started=True,
     task_ignore_result=False,  # True
     beat_scheduler="redbeat.RedBeatScheduler",  # 使用 RedBeat 作为调度器
-    redbeat_redis_url=settings.celery_broker,  # RedBeat 使用的 Redis 数据库
+    redbeat_redis_url=settings.CELERY_BROKER_URL,  # RedBeat 使用的 Redis 数据库
     redbeat_lock_timeout=600,  # 调度任务锁超时时间（秒）
 )
 

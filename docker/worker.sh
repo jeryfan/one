@@ -7,12 +7,19 @@ export http_proxy=""; export https_proxy=""; export no_proxy=""; export HTTP_PRO
 cd /app/server
 PY=python3
 
-function start_server(){
+function start_celery_worker(){
     while [ 1 -eq 1 ];do
-      $PY -m uvicorn asgi:app --host 0.0.0.0 --port 8000 --proxy-headers --reload > /var/lib/logs/run_admin.log 2>&1
+      $PY -m celery -A app.celery_app worker --loglevel=info
     done
 }
 
-start_server &
+function start_celery_beat(){
+    while [ 1 -eq 1 ];do
+      $PY -m celery -A app.celery_app beat --loglevel=info
+    done
+}
+
+start_celery_worker &
+start_celery_beat &
 
 wait;
