@@ -12,6 +12,7 @@ dependencies = [
     "fastapi-cache2>=0.2.2",
     "fastapi-pagination>=0.12.34",
     "google-generativeai>=0.8.4",
+    "httpx[socks]>=0.28.1",
     "motor>=3.7.0",
     "openai>=1.63.0",
     "passlib[bcrypt]>=1.7.4",
